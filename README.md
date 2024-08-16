@@ -1,4 +1,3 @@
-```markdown
 # Go (Golang) Studies
 
 Welcome to my Go (Golang) studies repository! This repository contains notes, exercises, and small projects as I explore and learn the Go programming language.
