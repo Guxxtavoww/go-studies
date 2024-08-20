@@ -14,5 +14,7 @@ func main() {
 
 	secound_array := []string{"a", "b", "c"}
 
-	fmt.Println(secound_array)
+	for i := 0; i < len(secound_array); i++ {
+		fmt.Println(secound_array[i])
+	}
 }
