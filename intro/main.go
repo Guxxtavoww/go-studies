@@ -35,8 +35,8 @@ func main() {
 	// Dobra as dimensões do retângulo original (factor = 2)
 	rectangle.scale(2)
 
-	fmt.Println(rectangle.width)  // 20.50
-	fmt.Println(rectangle.height) // 6.48
+	fmt.Println(rectangle.width)
+	fmt.Println(rectangle.height)
 
 	fmt.Println("Nova area: ", rectangle.calculate_rectangle_area())
 }
