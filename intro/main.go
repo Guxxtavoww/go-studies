@@ -20,5 +20,4 @@ func main() {
 	rectangle_area := rectangle.calculate_rectangle_area()
 
 	fmt.Println("Area", rectangle_area)
-
 }
