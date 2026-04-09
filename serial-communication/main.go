@@ -9,6 +9,10 @@ import (
 	"github.com/tarm/serial"
 )
 
+func find_esp32_port() {
+	
+}
+
 func main() {
 	portName := "/dev/ttyUSB0" // Change this to your ESP32's serial port (e.g., COM3 on Windows)
 	baudRate := 115200         // Set to the ESP32's baud rate
