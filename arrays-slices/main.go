@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+type ArrType [5]int
+
+var arr ArrType = ArrType{1, 2, 3, 4, 5}
+
 func main() {
 	// var arr [2]string
 
@@ -16,5 +20,9 @@ func main() {
 
 	for i := 0; i < len(secound_array); i++ {
 		fmt.Println(secound_array[i])
+	}
+
+	for index, num := range arr {
+		fmt.Printf("O valor do indice %d é %d", index, num)
 	}
 }
