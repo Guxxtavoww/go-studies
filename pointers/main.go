@@ -2,6 +2,20 @@ package main
 
 import "fmt"
 
+// Se não usar o ponteiro o Go vai criar uma copia do valor da variavel passada e passar para a função
+func copied_params_ex(a, b int) int {
+	return a + b
+}
+
+// Agora dá para manipular os valores originais dentro da função
+func refed_params_ex(a, b *int) int {
+	// *a = 50 -> Vai atualizar no escopo de cima
+
+	return *a + *b
+}
+
+// refed_params_ex(&var1, &var2)
+
 // stack retorna um int por valor — `x` é alocado na stack e copiado no retorno.
 // O compilador não precisa mover `x` para a heap porque nenhuma referência a ele escapa.
 func stack() int {
