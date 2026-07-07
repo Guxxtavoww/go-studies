@@ -1,0 +1,1 @@
+## `defer` serve para adiar uma intrucao para ate o final do escopo da funcao, ou seja, quando a funcao terminar de executar, a instrucao defer sera executada.
