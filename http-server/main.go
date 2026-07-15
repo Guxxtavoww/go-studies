@@ -57,7 +57,6 @@ func SearchCepHandler(response_writer http.ResponseWriter, request *http.Request
 	}
 
 	response_writer.Header().Set("Content-Type", "application/json")
-	response_writer.WriteHeader(http.StatusOK)
 
 	cepQuery := request.URL.Query().Get("cep")
 
@@ -72,6 +71,8 @@ func SearchCepHandler(response_writer http.ResponseWriter, request *http.Request
 		response_writer.WriteHeader(http.StatusInternalServerError)
 		response_writer.Write([]byte(`{"error": "Erro ao buscar dados do CEP"}`))
 	}
+
+	response_writer.WriteHeader(http.StatusOK)
 
 	// essa linha de código é responsável por codificar a struct viaCepResponse em formato JSON e escrever essa resposta no corpo da resposta HTTP. A função json.NewEncoder(response_writer) cria um novo codificador JSON que escreve diretamente no response_writer, que é o objeto responsável por enviar a resposta ao cliente. Em seguida, o método Encode(viaCepResponse) é chamado para converter a struct viaCepResponse em JSON e enviá-la como resposta ao cliente.
 	json.NewEncoder(response_writer).Encode(viaCepResponse)
