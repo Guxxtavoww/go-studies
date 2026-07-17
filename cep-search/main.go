@@ -40,6 +40,7 @@ func SaveToFile(data ViaCepResponse) {
 }
 
 func main() {
+	// range os.Args[1:] percorre todos os argumentos passados para o programa, exceto o primeiro (que é o nome do programa)
 	for _, cep := range os.Args[1:] {
 		url := fmt.Sprintf("https://viacep.com.br/ws/%s/json/", cep)
 
