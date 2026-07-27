@@ -1,0 +1,19 @@
+services:
+  database:
+    image: postgres
+    restart: always
+    container_name: database
+    environment:
+      POSTGRES_DB: ${DATABASE_DATABASE_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+    volumes:
+      - ./.data/postgresql:/bitnami/postgresql
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
