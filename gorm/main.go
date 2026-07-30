@@ -11,6 +11,14 @@ import (
 	"gorm.io/gorm"
 )
 
+func getProductById(db *gorm.DB, productId models.EntityId) *models.Product {
+	var product models.Product
+
+	db.First(&product, productId)
+
+	return &product
+}
+
 func main() {
 	env := start.AppSetup()
 
@@ -40,4 +48,8 @@ func main() {
 	}
 
 	db.Create(&productsCreateMany)
+
+	product := getProductById(db, 1)
+
+	fmt.Println(product)
 }

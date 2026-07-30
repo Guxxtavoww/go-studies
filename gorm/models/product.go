@@ -1,7 +1,9 @@
 package models
 
+type EntityId int
+
 type Product struct {
-	Id    int `gorm:"primaryKey"`
+	Id    EntityId `gorm:"primaryKey"`
 	Name  string
 	Price float64
 }
