@@ -1,0 +1,1 @@
+# Para funções externas de arquivos internos sempre deve começar com letra maiuscula para serem exportadas corretamente
