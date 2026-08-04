@@ -1,6 +1,7 @@
 package start
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -15,6 +16,18 @@ type Env struct {
 }
 
 const ENV_CONTEXT_KEY = "env-context-key"
+
+func (env *Env) GetDbConnectionDsn() string {
+	dsn := fmt.Sprintf(
+		"host=localhost user=%s password=%s dbname=%s port=%s sslmode=disable",
+		env.DB_USER,
+		env.DATABASE_ROOT_PASSWORD,
+		env.DATABASE_DATABASE_NAME,
+		env.DB_PORT,
+	)
+
+	return dsn
+}
 
 func AppSetup() *Env {
 	if err := godotenv.Load(); err != nil {

@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 
+	"gorm/database"
 	"gorm/models"
 	"gorm/start"
 	"gorm/utils"
@@ -33,19 +35,15 @@ func getProductsByName(db *gorm.DB, name string) *[]models.Product {
 func main() {
 	env := start.AppSetup()
 
-	dsn := fmt.Sprintf(
-		"host=localhost user=%s password=%s dbname=%s port=%s sslmode=disable",
-		env.DB_USER,
-		env.DATABASE_ROOT_PASSWORD,
-		env.DATABASE_DATABASE_NAME,
-		env.DB_PORT,
-	)
+	dsn := env.GetDbConnectionDsn()
 
 	db := utils.UnrwrapError(gorm.Open(postgres.Open(dsn), &gorm.Config{}))
 
 	utils.UnrwrapError(db.DB()).Ping()
 
-	db.AutoMigrate(&models.Product{})
+	if err := database.RunMigrations(db); err != nil {
+		log.Fatalf("failed to run migrations: %v", err)
+	}
 
 	// Create One
 	// db.Create(&Product{
