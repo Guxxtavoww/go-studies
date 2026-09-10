@@ -11,6 +11,7 @@ import (
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 func getProductById(db *gorm.DB, productId models.EntityId) *models.Product {
@@ -73,4 +74,24 @@ func main() {
 	// gets all products where the price is lagrger than 2022
 	// var products []models.Product
 	// db.Where("price > ?", 2022).Find(&products)
+
+
+	// Lock Pessimista (Pessimistic Lock) A ideia central: "assumo que vai dar conflito, então bloqueio antes de qualquer coisa dar errado."
+	tx := db.Begin()
+
+	var product models.Product
+
+	err := tx.Debug().Clauses(clause.Locking{Strength: "UPDATE"}).First(&product, 1).Error
+
+	if err != nil {
+		tx.Rollback()
+
+		return
+	}
+
+	product.Price = 9999
+
+	tx.Debug().Save(&product)
+
+	tx.Commit()
 }
